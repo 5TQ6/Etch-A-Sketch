@@ -1,4 +1,5 @@
 const grid = document.getElementById("container")
+const clear = document.getElementById("clearBtn")
 var slider = document.getElementById("sizeSlider");
 var output = document.getElementById("value");
 var val = slider.value;
@@ -8,6 +9,16 @@ slider.oninput = function() {
     var newVal = slider.value;
   output.textContent = `${newVal} x ${newVal}`; 
   val = newVal;
+  clearGrid();
+  makeGrid(val);
+}
+
+window.onload = function() {
+  makeGrid(val);
+}
+
+clear.onclick = function() {
+  clearGrid();
 }
 
 function makeGrid(gridNumber){
@@ -24,6 +35,8 @@ function makeGrid(gridNumber){
   
 }
 
-window.onload = function() {
-  makeGrid(val);
+function clearGrid() {
+  while (grid.firstChild) {
+    grid.removeChild(grid.lastChild)
+  }
 }
