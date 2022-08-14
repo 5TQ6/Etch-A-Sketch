@@ -55,6 +55,7 @@ button:hover {
     flex-wrap: wrap;
     flex-direction: row;
     margin: 0 auto;
+   
 }
 
 #sizeSlider {
@@ -126,10 +127,5 @@ footer {
 
 .box {
     border: .1px solid rgb(0, 0, 0);
-    transition: 0.4s;
-    
-}
-
-.box:hover {
-    background-color: black;
+    transition: 0.2s;
 }

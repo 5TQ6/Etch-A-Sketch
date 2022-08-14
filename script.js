@@ -1,26 +1,29 @@
-const grid = document.getElementById("container")
-const clear = document.getElementById("clearBtn")
+//VARIABLES >>
+const grid = document.getElementById("container");
+const clear = document.getElementById("clearBtn");
+const gridBox = document.querySelectorAll(".box");
 var slider = document.getElementById("sizeSlider");
 var output = document.getElementById("value");
 var val = slider.value;
+let color = "black";
 
-//shows the value of the slider 
-slider.oninput = function() {
-    var newVal = slider.value;
-  output.textContent = `${newVal} x ${newVal}`; 
-  val = newVal;
-  clearGrid();
-  makeGrid(val);
-}
 
+//EVENTS >>
 window.onload = function() {
   makeGrid(val);
 }
-
+slider.oninput = function() { //shows the value of the slider 
+    var newVal = slider.value;
+  output.textContent = `${newVal} x ${newVal}`; 
+  val = newVal; 
+  clearGrid(); //clear the container first before making the grid to avoid overflow
+  makeGrid(val);
+}
 clear.onclick = function() {
   clearGrid();
 }
 
+//FUNCTIONS >>
 function makeGrid(gridNumber){
   let containerSize  = Number(960);
   let gridSize = Number(gridNumber);
@@ -30,13 +33,19 @@ function makeGrid(gridNumber){
     gridCell.style.height = `${ (containerSize / gridSize) - 2 }px`;
     gridCell.style.width = `${ (containerSize / gridSize) - 2}px`;
     gridCell.classList.add("box");
-    grid.appendChild(gridCell)
+    gridCell.addEventListener('mouseover',colorSquare);
+    grid.appendChild(gridCell);
   }
-  
 }
-
 function clearGrid() {
   while (grid.firstChild) {
     grid.removeChild(grid.lastChild)
   }
+}
+function colorSquare() {
+  this.style.backgroundColor = color;
+}
+function changeColor(choice){
+  color = choice;
+
 }

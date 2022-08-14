@@ -15,10 +15,10 @@
     <main>
         
         <div id="settings">
-            <input id="colorPicker" type="color" value="#fff">
-            <button id="colorBtn">Color mode</button>
+            <input type="color" value="#fff" id="colorPicker" onchange="changeColor(this.value)">
+            <button id="colorBtn" onclick="changeColor(colorPicker.value)">Color mode</button>
             <button id="rainbowBtn">Rainbow mode</button>
-            <button id="eraserBtn">Eraser</button>
+            <button id="eraserBtn" onclick="changeColor('white')">Eraser</button>
             <button id="clearBtn">Clear</button>
             <div id="value">16 x 16</div>
             <input type="range" min="1" max="64" value="16" id="sizeSlider">
