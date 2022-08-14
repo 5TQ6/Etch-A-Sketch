@@ -4,9 +4,12 @@ const gridBox = document.querySelectorAll(".box");
 var slider = document.getElementById("sizeSlider");
 var output = document.getElementById("value");
 var val = slider.value;
+let switcher = document.getElementById("switch")
 let board = document.querySelector("#container")
 let color = "black";
-let click = true;
+let click = 1;
+switcher.checked = click; 
+
 
 //EVENTS >>
 window.onload = function() {
@@ -58,4 +61,6 @@ function changeColor(choice){
 
 document.querySelector("#container").addEventListener("click", () => {
   click = !click;
+  switcher.checked = click;
 })
+

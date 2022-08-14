@@ -15,6 +15,7 @@
     <main>
         
         <div id="settings">
+            <input type="checkbox" id="switch" disabled /><label for="switch">Toggle</label>
             <input type="color" value="#fff" id="colorPicker" onchange="changeColor(this.value)">
             <button id="colorBtn" onclick="changeColor(colorPicker.value)">Color mode</button>
             <button id="rainbowBtn" onclick="changeColor('random')">Rainbow mode</button>
