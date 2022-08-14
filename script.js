@@ -1,12 +1,12 @@
 //VARIABLES >>
-const grid = document.getElementById("container");
 const clear = document.getElementById("clearBtn");
 const gridBox = document.querySelectorAll(".box");
 var slider = document.getElementById("sizeSlider");
 var output = document.getElementById("value");
 var val = slider.value;
+let board = document.querySelector("#container")
 let color = "black";
-
+let click = true;
 
 //EVENTS >>
 window.onload = function() {
@@ -24,28 +24,38 @@ clear.onclick = function() {
 }
 
 //FUNCTIONS >>
-function makeGrid(gridNumber){
-  let containerSize  = Number(960);
-  let gridSize = Number(gridNumber);
-  for(let rowCol = 0; rowCol < gridSize ** 2; rowCol++)
-  {
-    let gridCell = document.createElement("div");
-    gridCell.style.height = `${ (containerSize / gridSize) - 2 }px`;
-    gridCell.style.width = `${ (containerSize / gridSize) - 2}px`;
-    gridCell.classList.add("box");
-    gridCell.addEventListener('mouseover',colorSquare);
-    grid.appendChild(gridCell);
+function makeGrid(size) {
+  
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size},1fr)`;
+
+  let amount = size * size;
+  for (let i = 0; i < amount; i++) {
+    let square = document.createElement("div");
+    square.classList.add("box");
+    square.addEventListener('mouseover',colorSquare);
+    board.insertAdjacentElement("beforeend", square);
   }
 }
 function clearGrid() {
-  while (grid.firstChild) {
-    grid.removeChild(grid.lastChild)
-  }
+  let squares = board.querySelectorAll("div")
+  squares.forEach((div) => div.style.backgroundColor = "white")
 }
 function colorSquare() {
+  if (click)
+  {
+    if (color === 'random'){
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+  else {
   this.style.backgroundColor = color;
+    }
+  }
 }
 function changeColor(choice){
   color = choice;
-
 }
+
+document.querySelector("#container").addEventListener("click", () => {
+  click = !click;
+})
